@@ -2,9 +2,8 @@ def solution(n):
     answer = 0
     divide = []
     
-    for i in range(n-1,1,-1):
+    for i in range(1,n):
         if n % i == 1:
-            divide.append(i)
-            
-    answer = divide[-1]
+            answer = i
+            break
     return answer
