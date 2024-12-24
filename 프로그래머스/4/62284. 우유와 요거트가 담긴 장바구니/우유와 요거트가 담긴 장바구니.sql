@@ -3,10 +3,10 @@ SELECT
 FROM
     CART_PRODUCTS
 WHERE
-    NAME IN ('Milk', 'Yogurt')
-GROUP BY
+    NAME in ('Milk','Yogurt')
+GROUP BY 
     CART_ID
 HAVING
     COUNT(DISTINCT NAME) = 2
 ORDER BY
-    CART_ID;
+    CART_ID
