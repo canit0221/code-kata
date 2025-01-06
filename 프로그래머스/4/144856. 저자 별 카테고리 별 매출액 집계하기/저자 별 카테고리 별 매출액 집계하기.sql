@@ -1,0 +1,28 @@
+SELECT
+    A.AUTHOR_ID,          
+    A.AUTHOR_NAME,        
+    B.CATEGORY,        
+    SUM(C.SALES * B.PRICE) AS TOTAL_SALES # 판매량 * 가격의 합계
+FROM
+    AUTHOR A
+    
+# AUTHOR_ID로 BOOK을 JOIN으로 연결
+JOIN
+    BOOK B
+    ON A.AUTHOR_ID = B.AUTHOR_ID
+    
+# BOOK_ID로 BOOK, BOOK_SALES을 JOIN으로 연결
+JOIN
+    BOOK_SALES C
+    ON B.BOOK_ID = C.BOOK_ID
+
+# 2022-01월만 찾음
+WHERE
+    C.SALES_DATE BETWEEN '2022-01-01' AND '2022-01-31' 
+GROUP BY
+    A.AUTHOR_ID,          
+    A.AUTHOR_NAME,        
+    B.CATEGORY           
+ORDER BY
+    A.AUTHOR_ID,      
+    B.CATEGORY DESC;  
