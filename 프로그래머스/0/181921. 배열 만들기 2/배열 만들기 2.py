@@ -1,6 +1,10 @@
 def solution(l, r):
     answer = []
     for i in range(l,r+1):
+        if i % 5 == 0:
+            l = i
+            break
+    for i in range(l,r+1,5):
         a = str(i).replace("0","")
         a = str(a).replace("5","")
         if a=="":
