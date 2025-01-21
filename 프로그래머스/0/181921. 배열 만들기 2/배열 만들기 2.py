@@ -1,15 +1,5 @@
+
+from itertools import product
 def solution(l, r):
-    answer = []
-    for i in range(l,r+1):
-        if i % 5 == 0:
-            l = i
-            break
-    for i in range(l,r+1,5):
-        a = str(i).replace("0","")
-        a = str(a).replace("5","")
-        if a=="":
-            answer.append(i)
-    if not len(answer):
-        return [-1]
-        
-    return answer
+    ans = list(filter(lambda x: l <= x <= r, map(lambda x: int(''.join(x)), product('05', repeat=7))))
+    return ans if ans else [-1]
