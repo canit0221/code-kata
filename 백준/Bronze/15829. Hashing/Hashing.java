@@ -11,13 +11,18 @@ public class Main {
 		
 		//배열 받기
 		String text = sc.next();
-		int[] numText = new int[text.length()];
-		int hash = 0;
+		int[] numText = new int[L];
+		long hash = 0;
+		long pow = 1;
+		
 		//숫자로 전환
-		for(int i =0;i<text.length();i++) {
+		for(int i =0;i<L;i++) {
 			numText[i] = (int)text.charAt(i) - 'a' + 1;
-			hash += numText[i]*(int)Math.pow(31, i);
+			hash += numText[i]*pow;
+			hash %= M;
+			pow = (pow*r)%M;
 		}
+		hash %= M;
 		System.out.println(hash);
 	}
 }
