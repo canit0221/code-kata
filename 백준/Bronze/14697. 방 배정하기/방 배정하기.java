@@ -9,12 +9,16 @@ public class Main {
 		int C = sc.nextInt();
 		int N = sc.nextInt();
 
-
-        if (N%A==0) {
-            System.out.println(1);
-            return;
-        }
-		
+		for (int i = 0; i <= N; i++) {
+			for (int j = 0; j <= N; j++) {
+				for (int k = 0; k <= N; k++) {
+					if (i * A + j * B + k * C == N) {
+						System.out.println(1);
+						return;
+					}
+				}
+			}
+		}
 		System.out.println(0);
 
 	}
