@@ -25,12 +25,12 @@ public class Main {
 		}
 
 		for (int i = 1; i < 11; i++) {
-			if (br[i] == 1) {
+			if (br[i] == 1) { // 이미 검사 통과한 행에 대해서만
 
 				for (int j = 1; j < 11; j++) {
 					int cnt = 0; // o가 나왔는지 체크
 					if (map[i][j] == 'x') {
-						for (int k = 1; k < 11; k++) {
+						for (int k = 1; k < 11; k++) { //열에 대해서 검사
 							if (map[k][j] == 'o')
 								cnt++;
 						}
