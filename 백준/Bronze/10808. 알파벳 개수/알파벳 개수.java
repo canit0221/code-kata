@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -7,17 +8,18 @@ public class Main {
 		
 		String S = sc.next();
 		
-		int cnt;
-		for (int i =0; i<26;i++) {
-			cnt = 0;
-			for(int j =0;j<S.length();j++) {
-				if (S.charAt(j)-97==i) 
-					cnt++;
-				
-			}
-			System.out.print(cnt+" ");
-			
+		int[] cnt = new int[26];
+		
+		for(int i=0;i<S.length();i++) {
+			cnt[S.charAt(i)-'a']++;
 		}
+		
+		StringBuilder sb = new StringBuilder();
+		for(int i =0; i<26;i++) {
+			sb.append(cnt[i]);
+			sb.append(' ');
+		}
+		System.out.println(sb.toString());
 	}
 
 }
