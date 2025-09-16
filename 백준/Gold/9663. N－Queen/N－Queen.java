@@ -1,43 +1,42 @@
 import java.util.Scanner;
 
 public class Main {
-	static int N;
-	static int[] col;
-	static int cnt;
+    static int N;
+    static int cnt;
+    static boolean[] col;    // 열 사용 여부
+    static boolean[] diag1;  // 오아 대각선 (row+col)
+    static boolean[] diag2;  // 왼아 대각선 (row-col+N-1)
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		N = sc.nextInt();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        N = sc.nextInt();
 
-		col = new int[N];
-		cnt = 0;
+        col = new boolean[N];
+        diag1 = new boolean[2 * N];
+        diag2 = new boolean[2 * N];
 
-		dfs(0); // 행 번호
-		System.out.println(cnt);
-	}// main
+        cnt = 0;
+        dfs(0);
+        System.out.println(cnt);
+    }
 
-	static void dfs(int row) { // 행 번호 입력
-		if (row == N) { // 행이 끝에 도달하면 cnt 하고 return
-			cnt++;
-			return;
-		}
+    static void dfs(int row) {
+        if (row == N) {
+            cnt++;
+            return;
+        }
 
-		for (int j = 0; j < N; j++) { // 각 행에 대해 열을 순회
-			col[row] = j; // 이번행에 는 j열에 둬보자
+        for (int c = 0; c < N; c++) {
+            // 이미 같은 열/대각선에 퀸이 있으면 배치 불가
+            if (col[c] || diag1[row + c] || diag2[row - c + N]) continue;
 
-			if (isP(row)) { // 둘수있으면
-				dfs(row + 1); // 한행 내려가기
-			}
-		}
-	}
+            // 현재 위치 사용 처리
+            col[c] = diag1[row + c] = diag2[row - c + N] = true;
 
-	static boolean isP(int row) {
-		for (int i = 0; i < row; i++) {
-			if (col[i] == col[row]) // 한번이라도 두려는곳과 같은열에 이미 뒀거나 
-				return false;
-			if (Math.abs(row - i) == Math.abs(col[row] - col[i]))
-				return false;
-		}
-		return true;
-	}
+            dfs(row + 1);
+
+            // 백트래킹 (원상 복구)
+            col[c] = diag1[row + c] = diag2[row - c + N] = false;
+        }
+    }
 }
