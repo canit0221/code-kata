@@ -1,8 +1,8 @@
-
 import java.io.*;
 import java.util.*;
 
 public class Main {
+    static int a = 1;
 
 	static int solve(int N, int r, int c, int idx) {
 		// 더 이상 쪼갤 수 없으면 종료
